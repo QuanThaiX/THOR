@@ -76,7 +76,6 @@ class PromptTrainer:
         self.model.eval()
         dataLoader = self.valid_loader if dataLoader is None else dataLoader
         dataiter = dataLoader
-        print(data)
         for i, data in tqdm(enumerate(dataiter), total=dataLoader.data_length):
             with torch.no_grad():
                 output = self.model.evaluate(**data)
@@ -291,7 +290,8 @@ class ThorTrainer:
         self.model.eval()
         dataLoader = self.valid_loader if dataLoader is None else dataLoader
         dataiter = dataLoader
-        for i, data in tqdm(enumerate(dataiter), total=dataLoader.data_length):
+        for i, data in tqdm(enumerate(dataiter), total=len(dataLoader)):
+        #for i, data in tqdm(enumerate(dataiter), total=dataLoader.data_length):
             with torch.no_grad():
                 step_one_inferred_output = self.model.generate(**data)
 
