@@ -61,7 +61,7 @@ class MyDataLoader:
     def collate_fn(self, data):
         print(data)
         data = [tuple(item) if isinstance(item, list) else item for item in data]
-        input_tokens, input_targets, input_labels, implicits = zip(*data)
+        input_tokens, input_targets, input_labels, implicits = zip(data)
         if self.config.reasoning == 'prompt':
             new_tokens = []
             for i, line in enumerate(input_tokens):
