@@ -15,7 +15,7 @@ class MyDataset(Dataset):
         self.data_length = 0
 
     def __getitem__(self, index):
-        return self.data[index]
+        return tuple(self.data[index])
 
     def __len__(self):
         return len(self.data)
@@ -161,6 +161,7 @@ class Preprocessor:
                 implicit = cur_data['implicits'][i]
             label = cur_data['labels'][i]
             implicit = int(implicit)
+            print(f"Transformed: {text}, {target}, {label}, {implicit}")
             res.append([text, target, label, implicit])
         return res
 
