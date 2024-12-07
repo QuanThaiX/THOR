@@ -15,7 +15,7 @@ class MyDataset(Dataset):
         self.data_length = 0
 
     def __getitem__(self, index):
-        return tuple(self.data[index])
+        return self.data[index]
 
     def __len__(self):
         return len(self.data)
@@ -60,6 +60,7 @@ class MyDataLoader:
 
     def collate_fn(self, data):
         print(data)
+        data = [tuple(item) if isinstance(item, list) else item for item in data]
         input_tokens, input_targets, input_labels, implicits = zip(*data)
         if self.config.reasoning == 'prompt':
             new_tokens = []
