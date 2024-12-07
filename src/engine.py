@@ -76,6 +76,7 @@ class PromptTrainer:
         self.model.eval()
         dataLoader = self.valid_loader if dataLoader is None else dataLoader
         dataiter = dataLoader
+        print(data)
         for i, data in tqdm(enumerate(dataiter), total=dataLoader.data_length):
             with torch.no_grad():
                 output = self.model.evaluate(**data)
