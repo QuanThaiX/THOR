@@ -162,7 +162,7 @@ class Preprocessor:
             label = cur_data['labels'][i]
             implicit = int(implicit)
             print(f"Transformed: {text}, {target}, {label}, {implicit}")
-            res.append((text, target, label, implicit))
+            res.append([text, target, label, implicit])
         return res
 
     def forward(self):
