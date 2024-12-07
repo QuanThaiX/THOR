@@ -59,6 +59,7 @@ class MyDataLoader:
         return res, self.config
 
     def collate_fn(self, data):
+        print(data)
         input_tokens, input_targets, input_labels, implicits = zip(*data)
         if self.config.reasoning == 'prompt':
             new_tokens = []
