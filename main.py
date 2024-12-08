@@ -59,7 +59,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--cuda_index', default=0)
     parser.add_argument('-r', '--reasoning', default='thor', choices=['prompt', 'thor'],
                         help='with one-step prompt or multi-step thor reasoning')
-    parser.add_argument('-z', '--zero_shot', type=bool, default=True, choices=[True, False],
+    parser.add_argument('-z', '--zero_shot', type=lambda x: str(x).lower() == 'false', default=True,
                         help='running under zero-shot mode or fine-tune mode')
     parser.add_argument('-d', '--data_name', default='ds310', choices=['restaurants', 'laptops', 'ds310'],
                         help='semeval data name')
