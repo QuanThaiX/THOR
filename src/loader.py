@@ -59,9 +59,7 @@ class MyDataLoader:
         return res, self.config
 
     def collate_fn(self, data):
-        print(data)
-        data = [tuple(item) if isinstance(item, list) else item for item in data]
-        input_tokens, input_targets, input_labels, implicits = zip(data)
+        input_tokens, input_targets, input_labels, implicits = zip(*data)
         if self.config.reasoning == 'prompt':
             new_tokens = []
             for i, line in enumerate(input_tokens):
@@ -96,11 +94,7 @@ class MyDataLoader:
             new_tokens = []
             contexts_A = []
             for i, line in enumerate(input_tokens):
-                #line = ' '.join(line.split()[:self.config.max_length - 25])
-                if isinstance(line, str):
-                    line = ' '.join(line.split()[:self.config.max_length - 25])
-                else:
-                    raise ValueError(f"Expected string, got {type(line)} instead.{line}")
+                line = ' '.join(line.split()[:self.config.max_length - 25])
                 context_step1, prompt = prompt_for_aspect_inferring(line, input_targets[i])
                 contexts_A.append(context_step1)
                 new_tokens.append(prompt)
