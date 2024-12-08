@@ -95,7 +95,7 @@ class MyDataLoader:
 
             new_tokens = []
             contexts_A = []
-            print(input_token)
+            print(input_tokens)
             for i, line in enumerate(input_tokens):
                 print(line)
                 line = ' '.join(line.split()[:self.config.max_length - 25])
