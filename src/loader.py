@@ -96,6 +96,7 @@ class MyDataLoader:
             new_tokens = []
             contexts_A = []
             for i, line in enumerate(input_tokens):
+                print(line)
                 line = ' '.join(line.split()[:self.config.max_length - 25])
                 context_step1, prompt = prompt_for_aspect_inferring(line, input_targets[i])
                 contexts_A.append(context_step1)
