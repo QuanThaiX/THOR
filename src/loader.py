@@ -100,7 +100,7 @@ class MyDataLoader:
                 if isinstance(line, str):
                     line = ' '.join(line.split()[:self.config.max_length - 25])
                 else:
-                    raise ValueError(f"Expected string, got {type(line)} instead.")
+                    raise ValueError(f"Expected string, got {type(line)} instead.{line}")
                 context_step1, prompt = prompt_for_aspect_inferring(line, input_targets[i])
                 contexts_A.append(context_step1)
                 new_tokens.append(prompt)
