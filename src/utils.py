@@ -6,40 +6,73 @@ from torch.optim import AdamW
 from transformers import get_linear_schedule_with_warmup
 
 
+# def prompt_direct_inferring(context, target):
+#     new_context = f'Given the sentence "{context}", '
+#     prompt = new_context + f'what is the sentiment polarity towards {target}?'
+#     return new_context, prompt
+
+
+# def prompt_direct_inferring_masked(context, target):
+#     new_context = f'Given the sentence "{context}", '
+#     prompt = new_context + f'the sentiment polarity towards {target} is [mask]'
+#     return new_context, prompt
+
+
+# def prompt_for_aspect_inferring(context, target):
+#     new_context = f'Given the sentence "{context}", '
+#     prompt = new_context + f'which specific aspect of {target} is possibly mentioned?'
+#     return new_context, prompt
+
+
+# def prompt_for_opinion_inferring(context, target, aspect_expr):
+#     new_context = context + ' The mentioned aspect is about ' + aspect_expr + '.'
+#     prompt = new_context + f' Based on the common sense, what is the implicit opinion towards the mentioned aspect of {target}, and why?'
+#     return new_context, prompt
+
+
+# def prompt_for_polarity_inferring(context, target, opinion_expr):
+#     new_context = context + f' The opinion towards the mentioned aspect of {target} is ' + opinion_expr + '.'
+#     prompt = new_context + f' Based on such opinion, what is the sentiment polarity towards {target}?'
+#     return new_context, prompt
+
+
+# def prompt_for_polarity_label(context, polarity_expr):
+#     prompt = context + f' The sentiment polarity is {polarity_expr}.' + ' Based on these contexts, summarize and return the sentiment polarity only, such as positive, neutral, or negative.'
+#     return prompt
+
 def prompt_direct_inferring(context, target):
-    new_context = f'Given the sentence "{context}", '
-    prompt = new_context + f'what is the sentiment polarity towards {target}?'
+    new_context = f'Cho câu "{context}", '
+    prompt = new_context + f'độ phân cực cảm xúc đối với {target} là gì?'
     return new_context, prompt
 
 
 def prompt_direct_inferring_masked(context, target):
-    new_context = f'Given the sentence "{context}", '
-    prompt = new_context + f'the sentiment polarity towards {target} is [mask]'
+    new_context = f'Cho câu "{context}", '
+    prompt = new_context + f'độ phân cực cảm xúc đối với {target} là [mask]'
     return new_context, prompt
 
 
 def prompt_for_aspect_inferring(context, target):
-    new_context = f'Given the sentence "{context}", '
-    prompt = new_context + f'which specific aspect of {target} is possibly mentioned?'
+    new_context = f'Cho câu "{context}", '
+    prompt = new_context + f'khía cạnh cụ thể nào của {target} có thể được đề cập?'
     return new_context, prompt
 
 
 def prompt_for_opinion_inferring(context, target, aspect_expr):
-    new_context = context + ' The mentioned aspect is about ' + aspect_expr + '.'
-    prompt = new_context + f' Based on the common sense, what is the implicit opinion towards the mentioned aspect of {target}, and why?'
+    new_context = context + ' Khía cạnh được đề cập là về ' + aspect_expr + '.'
+    prompt = new_context + f' Dựa trên kiến thức thông thường, ý kiến ngầm đối với khía cạnh được đề cập của {target} là gì, và tại sao?'
     return new_context, prompt
 
 
 def prompt_for_polarity_inferring(context, target, opinion_expr):
-    new_context = context + f' The opinion towards the mentioned aspect of {target} is ' + opinion_expr + '.'
-    prompt = new_context + f' Based on such opinion, what is the sentiment polarity towards {target}?'
+    new_context = context + f' Ý kiến đối với khía cạnh được đề cập của {target} là ' + opinion_expr + '.'
+    prompt = new_context + f' Dựa trên ý kiến này, độ phân cực cảm xúc đối với {target} là gì?'
     return new_context, prompt
 
 
 def prompt_for_polarity_label(context, polarity_expr):
-    prompt = context + f' The sentiment polarity is {polarity_expr}.' + ' Based on these contexts, summarize and return the sentiment polarity only, such as positive, neutral, or negative.'
+    prompt = context + f' Độ phân cực cảm xúc là {polarity_expr}.' + ' Dựa trên các ngữ cảnh này, hãy tóm tắt và trả về chỉ độ phân cực cảm xúc, chẳng hạn như positive, neutral, or negative.'
     return prompt
-
 
 def set_seed(seed):
     torch.manual_seed(seed)
